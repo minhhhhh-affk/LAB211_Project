@@ -153,7 +153,7 @@ def crawl_one_word(driver, word):
             for i, span in enumerate(spans):
                 classes = span.get_attribute("class") or ""
                 text    = span.text.strip()
-                if "txt-cn-vi" in classes:
+                if "txt-cn_vi" in classes:
                     han_viet = text
                 elif i == 0:
                     pinyin   = text
