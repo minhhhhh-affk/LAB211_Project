@@ -190,7 +190,7 @@ def login_hanzii(driver):
             EC.element_to_be_clickable((By.CSS_SELECTOR, "div.box-login div.btn-brand"))
         )
         driver.execute_script("arguments[0].click();", login_btn)
-        print("  ✓ Đã click nút Đăng nhập")
+        print("Đã click nút Đăng nhập")
         time.sleep(2)
 
         login_modal = WebDriverWait(driver, 8).until(
@@ -198,7 +198,7 @@ def login_hanzii(driver):
                 "div.login-component app-login"
             ))
         )
-        print("  ✓ Tìm thấy modal đăng nhập")
+        print("Tìm thấy modal đăng nhập")
 
         email_input = login_modal.find_element(By.CSS_SELECTOR,
             "input[type='text'], input[type='email'], input[formcontrolname='email']"
@@ -211,7 +211,7 @@ def login_hanzii(driver):
             arguments[0].dispatchEvent(new KeyboardEvent('keyup', {bubbles:true}));
         """, email_input, HANZII_EMAIL)
         time.sleep(0.5)
-        print("  ✓ Đã điền email")
+        print("Đã điền email")
 
         pass_input = login_modal.find_element(By.CSS_SELECTOR,
             "input[type='password'], input[formcontrolname='password']"
@@ -224,7 +224,7 @@ def login_hanzii(driver):
             arguments[0].dispatchEvent(new KeyboardEvent('keyup', {bubbles:true}));
         """, pass_input, HANZII_PASSWORD)
         time.sleep(0.5)
-        print("  ✓ Đã điền mật khẩu")
+        print("Đã điền mật khẩu")
 
         submit = login_modal.find_element(By.CSS_SELECTOR, "div.btn-login")
         driver.execute_script("arguments[0].click();", submit)
@@ -234,17 +234,17 @@ def login_hanzii(driver):
             WebDriverWait(driver, 5).until(
                 EC.invisibility_of_element_located((By.CSS_SELECTOR, "div.login-component"))
             )
-            print("  ✓ Đăng nhập thành công!")
+            print("Đăng nhập thành công!")
             return True
         except:
             if is_logged_in(driver):
-                print("  ✓ Đăng nhập thành công!")
+                print("Đăng nhập thành công!")
                 return True
-            print("  ✗ Đăng nhập thất bại — kiểm tra lại email/password trong config.py")
+            print("Đăng nhập thất bại — kiểm tra lại email/password trong config.py")
             return False
 
     except Exception as e:
-        print(f"  ✗ Lỗi đăng nhập: {e}")
+        print(f"Lỗi đăng nhập: {e}")
         return False
 
 # ============================================================
@@ -417,7 +417,7 @@ def crawl_current_page(driver, word):
         }
 
     except Exception as e:
-        print(f"  ✗ Lỗi khi crawl: {e}")
+        print(f"Lỗi khi crawl: {e}")
         return None
 
 # ============================================================
@@ -479,7 +479,7 @@ def run_hanzii():
 
     print()
     print("=" * 58)
-    print("  ✓ Sẵn sàng! Hãy tìm kiếm từ trên web.")
+    print("Sẵn sàng! Hãy tìm kiếm từ trên web.")
     print("=" * 58)
     print()
 
@@ -521,7 +521,7 @@ def run_hanzii():
                         continue
 
                 if not loaded:
-                    print(f"  ✗ Trang load quá chậm, bỏ qua 【{word}】")
+                    print(f"Trang load quá chậm, bỏ qua 【{word}】")
                     last_word = word
 
                 if loaded:
@@ -532,13 +532,13 @@ def run_hanzii():
                         saved = save_hanzii_word(result)
                         if saved:
                             saved_ok += 1
-                            print(f"  ✓ Đã lưu 【{word}】")
+                            print(f"Đã lưu 【{word}】")
                         else:
                             skipped += 1
-                            print(f"  → 【{word}】đã có trong database")
+                            print(f"【{word}】đã có trong database")
                     else:
                         failed += 1
-                        print(f"  ✗ Crawl thất bại 【{word}】")
+                        print(f"Crawl thất bại 【{word}】")
 
                     last_word = word
 
@@ -558,9 +558,9 @@ def run_hanzii():
 
     print()
     print("=" * 58)
-    print(f"  KẾT QUẢ PHIÊN LÀM VIỆC:")
-    print(f"  ✓ Lưu mới  : {saved_ok} từ")
-    print(f"  → Bỏ qua   : {skipped} từ (đã có)")
-    print(f"  ✗ Thất bại : {failed} từ")
-    print(f"  Kết thúc   : {datetime.now().strftime('%H:%M:%S %d/%m/%Y')}")
+    print(f"KẾT QUẢ PHIÊN LÀM VIỆC:")
+    print(f"Lưu mới  : {saved_ok} từ")
+    print(f"Bỏ qua   : {skipped} từ (đã có)")
+    print(f"Thất bại : {failed} từ")
+    print(f"Kết thúc   : {datetime.now().strftime('%H:%M:%S %d/%m/%Y')}")
     print("=" * 58)
