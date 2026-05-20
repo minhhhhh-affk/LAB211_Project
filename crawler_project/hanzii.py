@@ -542,7 +542,7 @@ def run_hanzii():
 
                     last_word = word
 
-                print(f"  Thống kê: ✓{saved_ok} lưu  →{skipped} bỏ qua  ✗{failed} lỗi")
+                print(f"  Thống kê: {saved_ok} lưu {skipped} bỏ qua {failed} lỗi")
                 print(f"└{'─'*54}┘")
                 print()
 
