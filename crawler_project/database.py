@@ -128,10 +128,6 @@ def log_crawl(website_id, website_name, started_at, finished_at, items_saved, st
         print(f"Error saving log: {e}")
 
 
-# ============================================================
-# PHẦN MỚI — Dành riêng cho Hanzii
-# ============================================================
-
 def setup_hanzii_table():
     """Tạo bảng hanzii_words với đầy đủ các cột"""
     conn = get_connection()
@@ -184,14 +180,14 @@ def setup_hanzii_table():
     for col_name, sql in new_columns:
         try:
             cursor.execute(sql)
-            print(f"  ✓ Đã thêm cột {col_name}")
+            print(f"Đã thêm cột {col_name}")
         except:
             pass  # Cột đã tồn tại → bỏ qua
 
     conn.commit()
     cursor.close()
     conn.close()
-    print("✓ Bảng hanzii_words sẵn sàng")
+    print("Bảng hanzii_words sẵn sàng")
 
 
 def save_hanzii_word(data):
@@ -241,5 +237,5 @@ def save_hanzii_word(data):
         conn.close()
         return saved
     except Exception as e:
-        print(f"  ✗ Lỗi DB: {e}")
+        print(f"Lỗi DB: {e}")
         return 0
